@@ -9,7 +9,6 @@ public class PathFinder {
 
 	public PathFinder(Maze m) {
 		grid = m.getMaze();
-		//System.out.println("max cookies: " + optimalPathFromTop(0,0,grid.length-1, grid[0].length-1));
 	}
 
 
