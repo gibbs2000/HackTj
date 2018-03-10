@@ -8,6 +8,10 @@ public class Maze {
 	private int[][] maze;
 
 	public Maze() {
+		readFromFile();
+	}
+
+	public void readFromFile() {
 		Scanner keyboard = new Scanner(System.in);
 		String fileName;
 
@@ -18,7 +22,7 @@ public class Maze {
 
 		Scanner sc = fileReader(fileName);
 		maze = createGrid(sc);
-		
+
 		keyboard.close();
 	}
 
@@ -41,7 +45,7 @@ public class Maze {
 	public int getCols() {
 		return maze[getRows()].length;
 	}
-	
+
 	/**
 	 * reads in a file
 	 * 
@@ -62,7 +66,6 @@ public class Maze {
 
 		return daGrid;
 	}
-	
 
 	/**
 	 * This takes in a scanner and then converts into an int[][]
