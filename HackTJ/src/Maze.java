@@ -8,32 +8,11 @@ public class Maze {
 	private int[][] maze;
 
 	public Maze() {
-		createFromFile(fileReader(getInput()));
+		maze = createFromFile(fileReader(getInput()));
 	}
 
 	public Maze(String fLoc) {
-		createFromFile(fileReader(fLoc));
-	}
-
-	/**
-	 * Prompts the user for a file name and returns the input as a String
-	 * 
-	 * @return the user-submitted file name
-	 */
-	public String getInput() {
-		Scanner keyboard = new Scanner(System.in);
-		String fileName;
-
-		// Open input file:
-
-		System.out.print("\nEnter input file name: ");
-		fileName = keyboard.nextLine().trim();
-
-		Scanner sc = fileReader(fileName);
-		maze = createFromFile(sc);
-
-		keyboard.close();
-		return fileName;
+		maze = createFromFile(fileReader(fLoc));
 	}
 
 	/**
@@ -91,24 +70,42 @@ public class Maze {
 	}
 
 	/**
-	 * reads in a file
+	 * Reads in a file
 	 * 
 	 * @param s
 	 *            file name
-	 * @return scanner representing the given file
+	 * @return a Scanner representing the given file
 	 */
 	public Scanner fileReader(String s) {
 		File f = new File(s);
-		Scanner daGrid = null;
+		Scanner grid = null;
 
 		try {
-			daGrid = new Scanner(f);
+			grid = new Scanner(f);
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found!");
 			System.exit(0);
 		}
 
-		return daGrid;
+		return grid;
+	}
+
+	/**
+	 * Prompts the user for a file name and returns the input as a String
+	 * 
+	 * @return the user-submitted file name
+	 */
+	public String getInput() {
+		Scanner keyboard = new Scanner(System.in);
+		String fileName;
+
+		// Open input file:
+
+		System.out.print("\nEnter input file name: ");
+		fileName = keyboard.nextLine().trim();
+
+		keyboard.close();
+		return fileName;
 	}
 
 	/**
@@ -124,7 +121,6 @@ public class Maze {
 		while (fileGrid.hasNextLine()) {
 
 			String line = fileGrid.nextLine();
-			// String[] unparsed = line.split(" ");
 			ArrayList<String> unparsed = new ArrayList<String>(Arrays.asList(line.split("\t")));
 			for (int i = unparsed.size() - 1; i >= 0; i--) {
 				if (unparsed.get(i).equals(""))
@@ -134,7 +130,6 @@ public class Maze {
 			int[] row = new int[unparsed.size()];
 
 			for (int i = 0; i < unparsed.size(); i++) {
-				// System.out.println(unparsed.get(i));
 				row[i] = Integer.parseInt(unparsed.get(i));
 			}
 
@@ -150,7 +145,7 @@ public class Maze {
 	public String toString() {
 		String op = "";
 		for (int i = 0; i < maze.length; i++) {
-			for (int j = 0; i < maze[i].length; j++) {
+			for (int j = 0; j < maze[j].length; j++) {
 				op += maze[i][j] + "\t";
 			}
 			op += "\n";

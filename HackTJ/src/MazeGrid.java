@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class MazeGrid{
-	private int[][] maze;
+public class MazeGrid {
+	private Maze m;
 	private GridObject[][] objGrid = new GridObject[getRows()][getCols()];
 
 	public MazeGrid() {
@@ -69,18 +69,18 @@ public class MazeGrid{
 	}
 
 	public void fillObjGrid() {
-		for(int r = 0; r < maze.length; r++) {
-			for(int c = 0; c < maze[r].length; c++) {
-				if(maze[r][c] == 0)
+		for (int r = 0; r < maze.length; r++) {
+			for (int c = 0; c < maze[r].length; c++) {
+				if (maze[r][c] == 0)
 					objGrid[r][c] = new Path();
-				else if(maze[r][c] == -1)
+				else if (maze[r][c] == -1)
 					objGrid[r][c] = new Wall();
-				else if(maze[r][c] == 1)
+				else if (maze[r][c] == 1)
 					objGrid[r][c] = new Path();
 			}
 		}
 	}
-	
+
 	/**
 	 * This takes in a scanner and then converts into an int[][]
 	 * 
