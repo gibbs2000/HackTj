@@ -6,6 +6,6 @@ public class MiscTester {
 		System.out.println(m);
 
 		PathFinder p = new PathFinder(m);
-		p.optimalPathFromTop(0, 0, m.getRows() - 1, m.getCols() - 1);
+		System.out.println(p.optimalPathFromTop(0, 0, m.getRows() - 1, m.getCols() - 1));
 	}
 }
