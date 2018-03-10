@@ -11,7 +11,20 @@ public class PathFinder {
 		r = 0; 
 		c = 0;
 	}
-
+	
+	public void setCurrent(int rr, int cc){
+		r = rr;
+		c = cc;
+	}
+	
+	public int getCurrentRow(){
+		return r;
+	}
+	
+	public int getCurrentColumn(){
+		return c;
+	}
+	
 	public int lookUp(int r, int c) {
 		try {
 			return grid[r - 1][c];
@@ -47,6 +60,7 @@ public class PathFinder {
 	public int optimalPath(int r, int c) throws InterruptedException {
 		int up = -1;
 		int left = -1;
+		setCurrent(r,c);
 		if (lookUp(r, c) == -1 && lookLeft(r, c) == -1 && r == 0 && c == 0) {
 			return grid[r][c];
 		} else {
@@ -63,6 +77,7 @@ public class PathFinder {
 	public int optimalPathFromTop(int r, int c, int goalR, int goalC) {
 		int down = -1;
 		int right = -1;
+		setCurrent(r,c);
 		if (lookDown(r, c) == -1 && lookRight(r, c) == -1 && r == goalR && c == goalC) {
 			return grid[r][c];
 		} else {
