@@ -66,7 +66,7 @@ public class Maze {
 	 * @return the number of columns
 	 */
 	public int getCols() {
-		return maze[getRows()].length;
+		return maze[getRows() - 1].length;
 	}
 
 	/**
