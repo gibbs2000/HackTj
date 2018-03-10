@@ -1,9 +1,18 @@
 
 public class PathFinder {
-	int[][] grid;
+	private int[][] grid;
+	private int r;
+	private int c;
+	
 
 	public PathFinder(Maze m) {
+<<<<<<< HEAD
 		grid = m.getMaze();
+=======
+		grid = m.getMaze(); 
+		r = 0; 
+		c =0;
+>>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
 	}
 
 	public int lookUp(int r, int c) {
