@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class MapFinder {
+public class PathFinder {
 	int[][] grid;
 
-	public MapFinder() {
+	public PathFinder() {
 		Scanner keyboard = new Scanner(System.in);
 		String fileName;
 
