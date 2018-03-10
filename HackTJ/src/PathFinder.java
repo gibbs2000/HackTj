@@ -5,10 +5,15 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class PathFinder {
-	int[][] grid;
+	private int[][] grid;
+	private int r;
+	private int c;
+	
 
 	public PathFinder(Maze m) {
 		grid = m.getMaze(); 
+		r = 0; 
+		c =0;
 	}
 
 
