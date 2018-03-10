@@ -6,13 +6,10 @@ public class PathFinder {
 	
 
 	public PathFinder(Maze m) {
-<<<<<<< HEAD
-		grid = m.getMaze();
-=======
+
 		grid = m.getMaze(); 
 		r = 0; 
-		c =0;
->>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
+		c = 0;
 	}
 
 	public int lookUp(int r, int c) {
