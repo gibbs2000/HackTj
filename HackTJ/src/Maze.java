@@ -15,6 +15,11 @@ public class Maze {
 		createFromFile(fileReader(fLoc));
 	}
 
+	/**
+	 * Prompts the user for a file name and returns the input as a String
+	 * 
+	 * @return the user-submitted file name
+	 */
 	public String getInput() {
 		Scanner keyboard = new Scanner(System.in);
 		String fileName;
@@ -31,22 +36,56 @@ public class Maze {
 		return fileName;
 	}
 
+	/**
+	 * Returns the maze in its entirety
+	 * 
+	 * @return the maze
+	 */
 	public int[][] getMaze() {
 		return maze;
 	}
 
+	/**
+	 * Changes the value of a specific cell
+	 * 
+	 * @param row
+	 *            the row of the cell to be changed
+	 * @param col
+	 *            the column of the cell to be changed
+	 * @param val
+	 *            the value to be assigned to the given cell
+	 */
 	public void setCell(int row, int col, int val) {
 		maze[row][col] = val;
 	}
 
+	/**
+	 * Returns the value of a given cell
+	 * 
+	 * @param row
+	 *            the row of the given cell
+	 * @param col
+	 *            the column of the given cell
+	 * @return the value of a given cell
+	 */
 	public int getCell(int row, int col) {
 		return maze[row][col];
 	}
 
+	/**
+	 * Returns the number of rows
+	 * 
+	 * @return the number of rows
+	 */
 	public int getRows() {
 		return maze.length;
 	}
 
+	/**
+	 * Returns the number of columns
+	 * 
+	 * @return the number of columns
+	 */
 	public int getCols() {
 		return maze[getRows()].length;
 	}
