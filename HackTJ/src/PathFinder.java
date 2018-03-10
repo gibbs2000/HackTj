@@ -1,27 +1,27 @@
 
 public class PathFinder {
 	private int[][] grid;
-	private int r;
-	private int c;
+	private int curRow;
+	private int curCol;
 
 	public PathFinder(Maze m) {
 
 		grid = m.getMaze();
-		r = 0;
-		c = 0;
+		curRow = 0;
+		curCol = 0;
 	}
 
 	public void setCurrent(int rr, int cc) {
-		r = rr;
-		c = cc;
+		curRow = rr;
+		curCol = cc;
 	}
 
 	public int getCurrentRow() {
-		return r;
+		return curRow;
 	}
 
 	public int getCurrentColumn() {
-		return c;
+		return curCol;
 	}
 
 	public int lookUp(int r, int c) {
@@ -84,7 +84,7 @@ public class PathFinder {
 				down = optimalPathFromTop(r + 1, c, goalR, goalC);
 			if (lookRight(r, c) != -1)
 				right = optimalPathFromTop(r, c + 1, goalR, goalC);
-			System.out.println(r + "  " + c);
+			System.out.println(curRow + " " + curCol);
 			return grid[r][c] + Math.max(down, right);
 		}
 	}
