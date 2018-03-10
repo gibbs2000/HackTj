@@ -8,10 +8,14 @@ public class Maze {
 	private int[][] maze;
 
 	public Maze() {
-		readFromFile();
+		createFromFile(fileReader(getInput()));
 	}
 
-	public void readFromFile() {
+	public Maze(String fLoc) {
+		createFromFile(fileReader(fLoc));
+	}
+
+	public String getInput() {
 		Scanner keyboard = new Scanner(System.in);
 		String fileName;
 
@@ -21,9 +25,10 @@ public class Maze {
 		fileName = keyboard.nextLine().trim();
 
 		Scanner sc = fileReader(fileName);
-		maze = createGrid(sc);
+		maze = createFromFile(sc);
 
 		keyboard.close();
+		return fileName;
 	}
 
 	public int[][] getMaze() {
@@ -74,15 +79,14 @@ public class Maze {
 	 *            the scanner containing the grid
 	 * @return a 2D array of ints that represents the maze
 	 */
-	public int[][] createGrid(Scanner fileGrid) {
-		String line;
+	public int[][] createFromFile(Scanner fileGrid) {
 
 		ArrayList<int[]> temp = new ArrayList<int[]>();
 		while (fileGrid.hasNextLine()) {
 
-			line = fileGrid.nextLine();
+			String line = fileGrid.nextLine();
 			// String[] unparsed = line.split(" ");
-			ArrayList<String> unparsed = new ArrayList<String>(Arrays.asList(line.split(" ")));
+			ArrayList<String> unparsed = new ArrayList<String>(Arrays.asList(line.split("\t")));
 			for (int i = unparsed.size() - 1; i >= 0; i--) {
 				if (unparsed.get(i).equals(""))
 					unparsed.remove(i);
@@ -101,5 +105,17 @@ public class Maze {
 		for (int i = 0; i < temp.size(); i++)
 			ret[i] = temp.get(i);
 		return ret;
+	}
+
+	@Override
+	public String toString() {
+		String op = "";
+		for (int i = 0; i < maze.length; i++) {
+			for (int j = 0; i < maze[i].length; j++) {
+				op += maze[i][j] + "\t";
+			}
+			op += "\n";
+		}
+		return op;
 	}
 }
