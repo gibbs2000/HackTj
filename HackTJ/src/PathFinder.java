@@ -74,6 +74,7 @@ public class PathFinder {
 	}
 
 	public int optimalPathFromTop(int r, int c, int goalR, int goalC) {
+		System.out.println(curRow + " " + curCol);
 		int down = -1;
 		int right = -1;
 		setCurrent(r, c);
@@ -84,7 +85,7 @@ public class PathFinder {
 				down = optimalPathFromTop(r + 1, c, goalR, goalC);
 			if (lookRight(r, c) != -1)
 				right = optimalPathFromTop(r, c + 1, goalR, goalC);
-			System.out.println(curRow + " " + curCol);
+			
 			return grid[r][c] + Math.max(down, right);
 		}
 	}
