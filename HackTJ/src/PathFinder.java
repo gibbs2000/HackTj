@@ -8,7 +8,7 @@ public class PathFinder {
 	int[][] grid;
 
 	public PathFinder(Maze m) {
-		grid = m.getMaze();
+		grid = m.getMaze(); 
 	}
 
 
