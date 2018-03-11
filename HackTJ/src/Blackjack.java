@@ -14,6 +14,8 @@ public class Blackjack extends JPanel {
 	private JButton startButton = new JButton("Start");
 	private JButton hitButton = new JButton("Hit");
 	private JButton stayButton = new JButton("Stay");
+	private JButton resetButton = new JButton("Reset");
+
 	public boolean playerTurn;
 
 	public Blackjack() {
@@ -23,18 +25,27 @@ public class Blackjack extends JPanel {
 		startButton.setBounds(250, 550, 100, 60);
 		hitButton.setBounds(380, 550, 100, 60);
 		stayButton.setBounds(510, 550, 100, 60);
-
-		frame.setSize(900, 700);
+		resetButton.setBounds(640, 550, 100, 60);
+		frame.setSize(1000, 1000);
 		frame.setVisible(true);
 		panel.add(startButton);
 		panel.add(hitButton);
 		panel.add(stayButton);
+		panel.add(resetButton);
 		frame.add(panel);
 		frame.setTitle("Blackjack");
 
 		startButton.setActionCommand("Start");
 		hitButton.setActionCommand("Hit");
+		resetButton.setActionCommand("Reset");
 		stayButton.setActionCommand("Stay");
+
+		resetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				reset();
+			}
+		});
 
 		stayButton.addActionListener(new ActionListener() {
 			@Override
@@ -94,7 +105,8 @@ public class Blackjack extends JPanel {
 	}
 
 	public void reset() {
-
+		ourDeck.shuffleInto(hand);
+		ourDeck.shuffleInto(compHand);
 	}
 
 	public void start() {
