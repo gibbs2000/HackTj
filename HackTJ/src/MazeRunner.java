@@ -12,7 +12,8 @@ public class MazeRunner {
 		} else if (((String) choice).equals(choices[1])) {
 
 		} else {
-			BuildMaze(/*TODO add param to choose which maze to build*/);
+			String fName = JOptionPane.showInputDialog("What is the name of the Maze File?");
+			BuildMaze m = BuildMaze(fName);
 		}
 
 	}
