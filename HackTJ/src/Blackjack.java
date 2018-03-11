@@ -9,11 +9,14 @@ import javax.swing.JPanel;
 public class Blackjack extends JPanel {
 
 	private Deck hand = new Deck(false);
+	private Deck compHand = new Deck(false);
 	private Deck ourDeck = new Deck();
 	private JButton startButton = new JButton("Start");
 	private JButton hitButton = new JButton("Hit");
 	private JButton stayButton = new JButton("Stay");
-
+	public boolean playerTurn;
+	
+	
 	public Blackjack() {
 		JFrame frame = new JFrame("Thing");
 		JPanel panel = new JPanel();
@@ -51,7 +54,10 @@ public class Blackjack extends JPanel {
 		hitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hit();
+				if(playerTurn)
+					hit(hand);
+				else
+					hit(compHand);
 			}
 		});
 
@@ -62,8 +68,8 @@ public class Blackjack extends JPanel {
 
 	}
 
-	public void hit() {
-		ourDeck.draw(1, hand);
+	public void hit(Deck h) {
+		ourDeck.draw(1, h);
 		if (hand.valueOfHand() > 21)
 			this.bust();
 
@@ -83,12 +89,13 @@ public class Blackjack extends JPanel {
 	}
 
 	public void stay() {
-
+		playerTurn = !playerTurn;
 	}
 
 	public void start() {
 		ourDeck.shuffle();
 		ourDeck.draw(2, hand);
+		ourDeck.draw(2, compHand);
 	}
 
 	public static void main(String[] args) {
