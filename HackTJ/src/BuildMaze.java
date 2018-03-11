@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -21,6 +22,7 @@ public class BuildMaze extends JPanel implements KeyListener {
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.addKeyListener(this);
+		frame.setBackground(Color.BLACK);
 
 		JOptionPane.showMessageDialog(null, "Welcome to Maze Builder");
 		JOptionPane.showMessageDialog(null, "Use the arrow keys to make a maze ending in the bottom right corner");
