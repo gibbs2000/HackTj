@@ -18,7 +18,7 @@ public class PlayerMaze extends JPanel implements KeyListener {
 		frame = new JFrame("Maze Maker");
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(MazeConstants.WINDOW_SIZE, MazeConstants.WINDOW_SIZE);
+		frame.setSize(MazeConstants.WINDOW_HEIGHT, MazeConstants.WINDOW_WIDTH);
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.addKeyListener(this);
