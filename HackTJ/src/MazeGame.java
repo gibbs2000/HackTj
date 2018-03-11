@@ -107,4 +107,39 @@ public class MazeGame extends JPanel {
 		this.frame = frame;
 	}
 
+	public void setX(int x) {
+		this.x = x;
+
+	}
+
+	@Override
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	@Override
+	public int getX() {
+		return x;
+	}
+
+	public Brick getBrick(int i, int j) {
+		return bricks[i][j];
+	}
+
+	public Brick[][] getBricks() {
+		return bricks;
+	}
+
+	public void setBricks(Brick[][] bricks) {
+		this.bricks = bricks;
+	}
+
+	public void setBrick(int i, int j, int x, int y, int val) {
+		bricks[i][j] = new Brick(x, y, val);
+	}
+
 }

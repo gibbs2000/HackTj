@@ -75,7 +75,7 @@ public class PathFinder {
 
 	public int optimalPathFromTop(int r, int c, int goalR, int goalC) throws InterruptedException {
 		System.out.println(curRow + " " + curCol);
-		MazeGame.updateLocation(r,c);
+		updateLocation(r, c);
 		int down = -1;
 		int right = -1;
 		setCurrent(r, c);
@@ -86,7 +86,7 @@ public class PathFinder {
 				down = optimalPathFromTop(r + 1, c, goalR, goalC);
 			if (lookRight(r, c) != -1)
 				right = optimalPathFromTop(r, c + 1, goalR, goalC);
-			
+
 			return grid[r][c] + Math.max(down, right);
 		}
 	}

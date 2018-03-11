@@ -3,6 +3,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
 
+@SuppressWarnings("serial")
 public class BuildMaze extends MazeGame implements KeyListener {
 
 	public BuildMaze() {
@@ -28,31 +29,32 @@ public class BuildMaze extends MazeGame implements KeyListener {
 			System.out.println(getX());
 
 			if (getX() > 0 && getM().getCell(getX() - 1, getY()) < 0)
-				x--;
-			System.out.println(x);
+				super.setX(getX() - 1);
+			System.out.println(getX());
 			break;
 		case KeyEvent.VK_RIGHT:
 			System.out.println("right");
-			System.out.println(x);
+			System.out.println(super.getX());
 
-			if (x < getM().getRows() - 1 && getM().getCell(x + 1, y) < 0)
-				x++;
-			System.out.println(x);
+			if (super.getX() < getM().getRows() - 1 && getM().getCell(super.getX() + 1, super.getY()) < 0)
+				super.setX(getX() + 1);
+
+			System.out.println(super.getX());
 			break;
 		case KeyEvent.VK_UP:
 			System.out.println("up");
-			System.out.println(y);
-			if (y > 0 && getM().getCell(x, y - 1) < 0)
-				y--;
-			System.out.println(y);
+			System.out.println(super.getY());
+			if (this.getY() > 0 && getM().getCell(super.getX(), super.getY() - 1) < 0)
+				super.setY(super.getY() - 1);
+			System.out.println(super.getY());
 			break;
 		case KeyEvent.VK_DOWN:
 			System.out.println("down");
-			System.out.println(y);
+			System.out.println(super.getY());
 
-			if (y < getM().getCols() - 1 && getM().getCell(x, y + 1) < 0)
-				y++;
-			System.out.println(y);
+			if (super.getY() < getM().getCols() - 1 && getM().getCell(super.getX(), super.getY() + 1) < 0)
+				super.setY(super.getY() + 1);
+			System.out.println(super.getY());
 			break;
 		case KeyEvent.VK_R:
 			resetBricks();
@@ -60,15 +62,17 @@ public class BuildMaze extends MazeGame implements KeyListener {
 			break;
 		}
 
-		getM().setCell(x, y, 0);
-		bricks[x][y] = new Brick((x) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
-				(y) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS, getM().getCell(x, y));
-		getFrame().add(bricks[x][y]);
+		getM().setCell(super.getX(), super.getY(), 0);
+		setBrick(super.getX(), super.getY(),
+				(super.getX()) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
+				(super.getY()) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
+				getM().getCell(super.getX(), super.getY()));
+		getFrame().add(getBrick(super.getX(), super.getY()));
 		getFrame().revalidate();
 		getFrame().repaint();
 
-		if (getM().getCell(x, y - 1) >= 0 && getM().getCell(x, y + 1) >= 0 && getM().getCell(x + 1, y) >= 0
-				&& getM().getCell(x - 1, y) >= 0)
+		if (getM().getCell(super.getX(), super.getY() - 1) >= 0 && getM().getCell(super.getX(), super.getY() + 1) >= 0
+				&& getM().getCell(super.getX() - 1, super.getY()) >= 0)
 
 		{
 			JOptionPane.showMessageDialog(null, "You've backed yourself into a corner. Press R to reset", "Uh-oh", 2);
@@ -81,14 +85,14 @@ public class BuildMaze extends MazeGame implements KeyListener {
 		getFrame().revalidate();
 		getFrame().repaint();
 
-		x = 0;
-		y = 0;
+		super.setX(0);
+		super.setY(0);
 		setM(new Maze("default.txt"));
-		bricks = new Brick[getM().getRows()][getM().getCols()];
+		setBricks(new Brick[getM().getRows()][getM().getCols()]);
 
 		for (int i = 0; i < getM().getRows(); i++) {
 			for (int j = 0; j < getM().getCols(); j++) {
-				bricks[i][j] = new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
+				setBrick(i, j, (i) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
 						(j) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
 						getM().getCell(i, j));
 				getFrame().add(new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
@@ -106,7 +110,6 @@ public class BuildMaze extends MazeGame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
