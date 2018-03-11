@@ -15,8 +15,7 @@ public class Blackjack extends JPanel {
 	private JButton hitButton = new JButton("Hit");
 	private JButton stayButton = new JButton("Stay");
 	public boolean playerTurn;
-	
-	
+
 	public Blackjack() {
 		JFrame frame = new JFrame("Thing");
 		JPanel panel = new JPanel();
@@ -54,7 +53,7 @@ public class Blackjack extends JPanel {
 		hitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(playerTurn)
+				if (playerTurn)
 					hit(hand);
 				else
 					hit(compHand);
@@ -70,13 +69,13 @@ public class Blackjack extends JPanel {
 
 	public void hit(Deck h) {
 		ourDeck.draw(1, h);
-		playerHand = !playerHand;
+		playerTurn = !playerTurn;
 		if (hand.valueOfHand() > 21)
 			this.bust();
 
 		if (hand.valueOfHand() == 21)
 			this.win();
-		
+
 	}
 
 	public void bust() {
@@ -94,12 +93,15 @@ public class Blackjack extends JPanel {
 		playerTurn = !playerTurn;
 	}
 
+	public void reset() {
+
+	}
+
 	public void start() {
 		ourDeck.shuffle();
 		ourDeck.draw(2, hand);
 		ourDeck.draw(2, compHand);
 	}
-	
 
 	public static void main(String[] args) {
 		Blackjack game = new Blackjack();
