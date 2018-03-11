@@ -95,11 +95,17 @@ public class PathFinder {
 		System.out.println(curRow + " " + curCol);
 		
 		b[r][c] = new Brick(r * 100, c * 100, -2);
+		
 		cr.add(b[r][c]);
 		System.out.println("Repainting " + r + " " + c);
 		cr.revalidate();
 		cr.repaint();
 		Thread.sleep(250);
+		cr.remove(b[r][c]);
+		b[r][c] = new Brick(r *100, c*100, 3);
+		cr.add(b[r][c]);
+		cr.revalidate();
+		cr.repaint();
 		
 		int down = -1;
 		int right = -1;

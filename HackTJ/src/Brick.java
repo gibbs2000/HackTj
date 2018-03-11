@@ -30,6 +30,11 @@ public class Brick extends JPanel{
 		switch(blockType){
 		case 1: case 0:
 			//g2.setColor(Color.WHITE);
+			//g2.fillRect(x, y, 100, 100);
+			break;
+		case 3:
+			g2.setColor(Color.WHITE);
+			g2.fillRect(x, y, 100, 100);
 			break;
 		case -2:
 			g2.setColor(Color.RED);
