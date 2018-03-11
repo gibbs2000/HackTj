@@ -63,7 +63,7 @@ public class MazeGame extends JPanel {
 	public void updateLocation(int r, int c) throws InterruptedException {
 		// System.out.println(curRow + " " + curCol);
 
-		bricks[r][c] = new Brick(r * 100, c * 100, -2);
+		bricks[x][y].setBlockType(-2);
 
 		frame.add(bricks[r][c]);
 		System.out.println("Repainting " + r + " " + c);
@@ -71,7 +71,8 @@ public class MazeGame extends JPanel {
 		frame.repaint();
 		Thread.sleep(1000);
 		frame.remove(bricks[r][c]);
-		bricks[r][c] = new Brick(r * 100, c * 100, 3);
+		bricks[x][y].setBlockType(3);
+
 		frame.add(bricks[r][c]);
 		frame.revalidate();
 		frame.repaint();
@@ -80,10 +81,10 @@ public class MazeGame extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (x > 0 && y > 0) {
+		if (x > 0 || y > 0) {
+			getFrame().remove(bricks[x][y]);
 			getM().setCell(x, y, 0);
-			bricks[x][y] = new Brick((x) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
-					(y) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS, 0);
+			bricks[x][y].setBlockType(0);
 			getFrame().add(bricks[x][y]);
 			getFrame().revalidate();
 			getFrame().repaint();

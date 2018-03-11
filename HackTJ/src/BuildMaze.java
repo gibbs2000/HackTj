@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -14,14 +15,19 @@ public class BuildMaze extends MazeGame implements KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		if (getX() == getM().getRows() - 2 && getY() == getM().getCols() - 2) {
-			System.out.println("Hewwo");
 			getFrame().setVisible(false);
 			getFrame().revalidate();
 			getFrame().repaint();
 			getFrame().dispose();
 		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
 		int key = e.getKeyCode();
 		switch (key) {
 		case KeyEvent.VK_LEFT:

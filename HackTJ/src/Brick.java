@@ -20,14 +20,13 @@ public class Brick extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g){
-		Graphics2D g2 = (Graphics2D)g;
+	public void paint(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(5));
 		g2.setColor(Color.BLACK);
 		g2.drawRect(x, y, 100, 100);
-		g2.setColor(Color.WHITE);
-		switch(blockType){
-		case 1: 
+		switch (blockType) {
+		case 1:
 			g2.setColor(Color.RED);
 			g2.fillRect(x, y, 100, 100);
 			break;
@@ -44,15 +43,17 @@ public class Brick extends JPanel {
 			g2.fillRect(x, y, 100, 100);
 			break;
 		default:
-			g2.setColor(Color.BLACK);
+			g2.setColor(Color.GRAY);
 			g2.fillRect(x, y, 100, 100);
 		}
-		
+
 	}
-	public int getBlockType(){
+
+	public int getBlockType() {
 		return blockType;
 	}
-	public void setBlockType(int blockType){
+
+	public void setBlockType(int blockType) {
 		this.blockType = blockType;
 	}
 
