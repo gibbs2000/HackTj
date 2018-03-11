@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Brick extends JPanel {
 	private int x;
 	private int y;
@@ -26,8 +27,9 @@ public class Brick extends JPanel {
 		g2.drawRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
 		switch (blockType) {
 		case -1:
-			//g2.setColor(Color.BLACK);
-			//g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
+			// g2.setColor(Color.BLACK);
+			// g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS,
+			// MazeConstants.DEFAULT_DIMENSIONS);
 			break;
 		default:
 			g2.setColor(Color.WHITE);
