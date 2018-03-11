@@ -15,6 +15,10 @@ public class Maze {
 		maze = createFromFile(fileReader(fLoc));
 	}
 
+	public Maze(int[][] m) {
+		maze = m;
+	}
+
 	/**
 	 * Returns the maze in its entirety
 	 * 

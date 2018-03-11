@@ -3,12 +3,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class makeMaze extends JPanel implements KeyListener {
 	JFrame frame;
-	int x;
-	int y;
+	private int x;
+	private int y;
+	private Maze m;
 
 	public makeMaze() {
 		frame = new JFrame("Maze Maker");
@@ -20,15 +23,16 @@ public class makeMaze extends JPanel implements KeyListener {
 		frame.addKeyListener(this);
 		x = 0;
 		y = 0;
-	}
-
-	public static void runMaze() {
+		m = new Maze("default.txt");
+		JOptionPane.showMessageDialog(null, "Welcome to Maze Maker");
+		JOptionPane.showMessageDialog(null, "Use the DOWN and RIGHT arrow keys to make a maze");
 
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		if()
 
 	}
 
