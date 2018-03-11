@@ -20,23 +20,30 @@ public class Brick extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
+	public void paint(Graphics g){
+		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(5));
 		g2.setColor(Color.BLACK);
-		g2.drawRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
-		switch (blockType) {
-		case -1:
-			// g2.setColor(Color.BLACK);
-			// g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS,
-			// MazeConstants.DEFAULT_DIMENSIONS);
+		g2.drawRect(x, y, 100, 100);
+		g2.setColor(Color.WHITE);
+		switch(blockType){
+		case 1: case 0:
+			g2.setColor(Color.WHITE);
+			//g2.fillRect(x, y, 100, 100);
+			break;
+		case 3:
+			g2.setColor(Color.WHITE);
+			g2.fillRect(x, y, 100, 100);
+			break;
+		case -2:
+			g2.setColor(Color.RED);
+			g2.fillRect(x, y, 100, 100);
 			break;
 		default:
-			g2.setColor(Color.WHITE);
-			g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
-
+			g2.setColor(Color.BLACK);
+			g2.fillRect(x, y, 100, 100);
 		}
-
+		
 	}
 
 }

@@ -19,7 +19,7 @@ public class MazeGame extends JPanel {
 		getFrame().setSize(MazeConstants.WINDOW_WIDTH, MazeConstants.WINDOW_HEIGHT);
 		getFrame().setVisible(true);
 		getFrame().setResizable(false);
-		getFrame().setBackground(Color.RED);
+		getFrame().setBackground(Color.WHITE);
 
 		JOptionPane.showMessageDialog(null, "Welcome to " + gt);
 
@@ -65,16 +65,16 @@ public class MazeGame extends JPanel {
 
 		bricks[r][c] = new Brick(r * 100, c * 100, -2);
 
-		getFrame().add(bricks[r][c]);
+		frame.add(bricks[r][c]);
 		System.out.println("Repainting " + r + " " + c);
-		getFrame().revalidate();
-		getFrame().repaint();
-		Thread.sleep(250);
-		getFrame().remove(bricks[r][c]);
+		frame.revalidate();
+		frame.repaint();
+		Thread.sleep(1000);
+		frame.remove(bricks[r][c]);
 		bricks[r][c] = new Brick(r * 100, c * 100, 3);
-		getFrame().add(bricks[r][c]);
-		getFrame().revalidate();
-		getFrame().repaint();
+		frame.add(bricks[r][c]);
+		frame.revalidate();
+		frame.repaint();
 	}
 
 	@Override
