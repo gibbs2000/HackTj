@@ -14,7 +14,7 @@ public class BuildMaze extends JPanel implements KeyListener {
 	private Maze m;
 
 	public BuildMaze() {
-		frame = new JFrame("Maze Maker");
+		frame = new JFrame("Maze Builder");
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(MazeConstants.WINDOW_SIZE, MazeConstants.WINDOW_SIZE);
