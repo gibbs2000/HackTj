@@ -32,6 +32,7 @@ public class Blackjack extends JPanel {
 		panel.add(hitButton);
 		panel.add(stayButton);
 		panel.add(resetButton);
+
 		frame.add(panel);
 		frame.setTitle("Blackjack");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
