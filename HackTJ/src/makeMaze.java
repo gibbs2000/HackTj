@@ -32,7 +32,9 @@ public class makeMaze extends JPanel implements KeyListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if()
+		if (x > 0 && y > 0) {
+			m.setCell(x, y, 0);
+		}
 
 	}
 
