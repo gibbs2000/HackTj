@@ -10,15 +10,18 @@ import javax.swing.JPanel;
 public class ImagePanel extends JPanel{
 
     private BufferedImage image;
+    private int x,y;
 
-    public ImagePanel(BufferedImage i) {
+    public ImagePanel(BufferedImage i, int xx, int yy) {
        image = i;
+       x =xx;
+       y = yy;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
+        g.drawImage(image, x, y, this); // see javadoc for more info on the parameters            
     }
 
 }
