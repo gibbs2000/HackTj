@@ -1,7 +1,7 @@
 import javax.swing.JOptionPane;
 
 public class MazeRunner {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		String[] choices = { "Build", "Solve", "Watch" };
 		String[] mazes = { "m1.txt", "m2.txt", "m3.txt" };
 		JOptionPane.showMessageDialog(null,
@@ -14,10 +14,15 @@ public class MazeRunner {
 			Object maze = JOptionPane.showInputDialog(null, "Which maze do you want to solve?", "Player Solver",
 					JOptionPane.INFORMATION_MESSAGE, null, mazes, mazes[0]);
 		} else {
+<<<<<<< HEAD
 
 			Object maze = JOptionPane.showInputDialog(null, "Which maze do you want to watch the computer solve?",
 					"Maze Auto-Solver", JOptionPane.INFORMATION_MESSAGE, null, mazes, mazes[0]);
 			BuildMaze m = new BuildMaze((String) maze);
+=======
+			String fName = JOptionPane.showInputDialog("What is the name of the Maze File?");
+			BuildMaze m = new BuildMaze(fName);
+>>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
 		}
 
 	}

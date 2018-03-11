@@ -73,8 +73,9 @@ public class PathFinder {
 		}
 	}
 
-	public int optimalPathFromTop(int r, int c, int goalR, int goalC) {
+	public int optimalPathFromTop(int r, int c, int goalR, int goalC) throws InterruptedException {
 		System.out.println(curRow + " " + curCol);
+		BuildMaze.updateLocation(r,c);
 		int down = -1;
 		int right = -1;
 		setCurrent(r, c);

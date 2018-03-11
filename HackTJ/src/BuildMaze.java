@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class BuildMaze extends JPanel implements KeyListener {
-	JFrame frame;
+	static JFrame frame;
 	private int x;
 	private int y;
-	private Maze m;
-	private Brick[][] bricks;
+	private static Maze m;
+	private static Brick[][] bricks;
 
 	public BuildMaze() {
 		frame = new JFrame("Maze Builder");
@@ -45,15 +45,20 @@ public class BuildMaze extends JPanel implements KeyListener {
 			}
 		}
 	}
+<<<<<<< HEAD
 
 	public BuildMaze(String s) {
+=======
+	
+	public BuildMaze(String s) throws InterruptedException {
+>>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
 		frame = new JFrame("Maze Solver");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(MazeConstants.WINDOW_WIDTH, MazeConstants.WINDOW_HEIGHT);
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.addKeyListener(this);
-		frame.setBackground(Color.RED);
+		frame.setBackground(Color.WHITE);
 
 		JOptionPane.showMessageDialog(null, "Welcome to Maze Auto-Solver");
 		JOptionPane.showMessageDialog(null, "Watch the computer beat the maze as fast as possible");
@@ -62,6 +67,7 @@ public class BuildMaze extends JPanel implements KeyListener {
 		y = 0;
 		m = new Maze(s);
 		bricks = setupGrid(frame, m);
+<<<<<<< HEAD
 
 		/*
 		 * for (int i = 0; i < m.getRows(); i++) { for (int j = 0; j < m.getCols(); j++)
@@ -75,6 +81,12 @@ public class BuildMaze extends JPanel implements KeyListener {
 		 * } }
 		 */
 
+=======
+		
+		PathFinder p = new PathFinder(m);
+		p.optimalPathFromTop(0, 0, m.getRows()-1, m.getCols()-1);
+		
+>>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
 	}
 
 	public static Brick[][] setupGrid(JFrame cr, Maze m) {
@@ -93,7 +105,28 @@ public class BuildMaze extends JPanel implements KeyListener {
 		return bricks;
 
 	}
+<<<<<<< HEAD
 
+=======
+	
+	public static void updateLocation(int r, int c) throws InterruptedException{
+		//System.out.println(curRow + " " + curCol);
+		
+		bricks[r][c] = new Brick(r * 100, c * 100, -2);
+		
+		frame.add(bricks[r][c]);
+		System.out.println("Repainting " + r + " " + c);
+		frame.revalidate();
+		frame.repaint();
+		Thread.sleep(250);
+		frame.remove(bricks[r][c]);
+		bricks[r][c] = new Brick(r *100, c*100, 3);
+		frame.add(bricks[r][c]);
+		frame.revalidate();
+		frame.repaint();
+	}
+	
+>>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
