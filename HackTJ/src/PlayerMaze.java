@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+@SuppressWarnings("serial")
 public class PlayerMaze extends MazeGame implements KeyListener {
 
 	public PlayerMaze(String choice) {
@@ -13,9 +14,6 @@ public class PlayerMaze extends MazeGame implements KeyListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (getX() > 0 && getY() > 0) {
-			getM().setCell(getX(), getY(), 0);
-		}
 
 	}
 
@@ -37,8 +35,12 @@ public class PlayerMaze extends MazeGame implements KeyListener {
 			// TODO move the current player right
 			System.out.println("right");
 			if (y + 1 < r) {
-				super.getBrick(x, y+1).setBlockType(1);
-				super.setY(y+1);
+				super.remove(super.getBrick(x, y + 1));
+
+				super.getBrick(x, y + 1).setBlockType(1);
+				super.setY(y + 1);
+				super.add(super.getBrick(x, y + 1));
+
 				super.validate();
 				super.repaint();
 			}
@@ -48,8 +50,10 @@ public class PlayerMaze extends MazeGame implements KeyListener {
 			// TODO move the player left
 			System.out.println("left");
 			if (y - 1 != 0) {
-				super.getBrick(x, y-1).setBlockType(1);
-				super.setY(y-1);
+				super.remove(super.getBrick(x, y - 1));
+				super.getBrick(x, y - 1).setBlockType(1);
+				super.setY(y - 1);
+				super.add(super.getBrick(x, y - 1));
 				super.validate();
 				super.repaint();
 			}
@@ -57,9 +61,13 @@ public class PlayerMaze extends MazeGame implements KeyListener {
 		if (e.getKeyCode() == (KeyEvent.VK_DOWN)) {
 			// TODO move down
 			System.out.println("down");
-			if (x + 1 < r) {
-				super.getBrick(x+1, y).setBlockType(1);
-				super.setX(x+1);
+			if (x + 1 < c) {
+				super.remove(super.getBrick(x + 1, y));
+
+				super.getBrick(x + 1, y).setBlockType(1);
+				super.setX(x + 1);
+				super.add(super.getBrick(x + 1, y));
+
 				super.validate();
 				super.repaint();
 			}
@@ -68,8 +76,12 @@ public class PlayerMaze extends MazeGame implements KeyListener {
 			// TODO move up
 			System.out.println("up");
 			if (x - 1 != 0) {
-				super.getBrick(x-1, y).setBlockType(1);
-				super.setX(x-1);
+				super.remove(super.getBrick(x - 1, y));
+
+				super.getBrick(x - 1, y).setBlockType(1);
+				super.setX(x - 1);
+				super.add(super.getBrick(x - 1, y));
+
 				super.validate();
 				super.repaint();
 			}
