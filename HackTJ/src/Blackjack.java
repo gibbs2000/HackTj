@@ -15,11 +15,13 @@ public class Blackjack extends JPanel {
 	private JButton hitButton = new JButton("Hit");
 	private JButton stayButton = new JButton("Stay");
 	private JButton resetButton = new JButton("Reset");
-
+	private int lastPlayerX, lastPlayerY;
 	public boolean playerTurn;
+	private CardImage c;
+	private JFrame frame;
 
 	public Blackjack() {
-		JFrame frame = new JFrame("Thing");
+		frame = new JFrame("Thing");
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		startButton.setBounds(250, 550, 100, 60);
@@ -36,6 +38,9 @@ public class Blackjack extends JPanel {
 		frame.add(panel);
 		frame.setTitle("Blackjack");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		c = new CardImage();
+		this.displayCards();
 
 		startButton.setActionCommand("Start");
 		hitButton.setActionCommand("Hit");
@@ -83,7 +88,19 @@ public class Blackjack extends JPanel {
 
 		if (hand.valueOfHand() == 21)
 			this.win();
+		if (compHand.valueOfHand() > 21) {
+			this.win();
+		}
+		this.displayCards();
+	}
 
+	public void displayCards() {
+		for (int i = 0; i < hand.size(); i++) {
+			ImagePanel img = new ImagePanel(c.getImageFromCard(hand.get(i)), 100 + i * 30, 50);
+			frame.add(img);
+			this.repaint();
+			this.revalidate();
+		}
 	}
 
 	public void bust() {
