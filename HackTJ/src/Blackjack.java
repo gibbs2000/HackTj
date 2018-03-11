@@ -34,6 +34,7 @@ public class Blackjack extends JPanel {
 		panel.add(resetButton);
 		frame.add(panel);
 		frame.setTitle("Blackjack");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		startButton.setActionCommand("Start");
 		hitButton.setActionCommand("Hit");
@@ -73,11 +74,6 @@ public class Blackjack extends JPanel {
 
 	}
 
-	private void setDefaultCloseOperation(int exitOnClose) {
-		// TODO Auto-generated method stub
-
-	}
-
 	public void hit(Deck h) {
 		ourDeck.draw(1, h);
 		playerTurn = !playerTurn;
@@ -95,7 +91,7 @@ public class Blackjack extends JPanel {
 	}
 
 	public void win() {
-		JOptionPane.showMessageDialog(null, "You won!", "Win!", 1);
+		JOptionPane.showMessageDialog(null, "You won!", "Win!", 2);
 
 		System.out.println("21!");
 	}
@@ -110,6 +106,7 @@ public class Blackjack extends JPanel {
 	}
 
 	public void start() {
+		reset();
 		ourDeck.shuffle();
 		ourDeck.draw(2, hand);
 		ourDeck.draw(2, compHand);
