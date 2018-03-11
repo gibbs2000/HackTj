@@ -85,7 +85,7 @@ public class PathFinder {
 		System.out.println("Repainting " + r + " " + c);
 		m.getFrame().revalidate();
 		m.getFrame().repaint();
-		Thread.sleep(500);
+		Thread.sleep(100);
 		m.getFrame().remove(m.getBricks()[r][c]);
 		m.getBricks()[r][c] = new Brick(r * MazeConstants.DEFAULT_DIMENSIONS, c * MazeConstants.DEFAULT_DIMENSIONS, 3);
 		m.getFrame().add(m.getBricks()[r][c]);
@@ -130,7 +130,7 @@ public class PathFinder {
 
 		int down = -1;
 		int right = -1;
-		int left = -1;
+		//int left = -1;
 		int up = -1;
 		setCurrent(r, c);
 		if (lookDown(r, c) == -1 && lookRight(r, c) == -1 && r == goalR && c == goalC) {
@@ -138,15 +138,15 @@ public class PathFinder {
 			// return grid[r][c];
 		} else {
 			if (lookDown(r, c) != -1)
-				down = optimalPathFromTop(r + 1, c, goalR, goalC, m);
+				down = optimalPathAll4(r + 1, c, goalR, goalC, m);
 			if (lookRight(r, c) != -1)
-				right = optimalPathFromTop(r, c + 1, goalR, goalC, m);
+				right = optimalPathAll4(r, c + 1, goalR, goalC, m);
 			if (lookUp(r, c) != -1)
-				up = optimalPathFromTop(r + 1, c, goalR, goalC, m);
-			if (lookLeft(r, c) != -1)
-				left = optimalPathFromTop(r, c + 1, goalR, goalC, m);
+				up = optimalPathAll4(r + 1, c, goalR, goalC, m);
+			//if (lookLeft(r, c) != -1)
+				//left = optimalPathAll4(r, c + 1, goalR, goalC, m);
 			
-			return grid[r][c] + Math.max(Math.max(down, right), Math.max(up, left));
+			return grid[r][c] + Math.max(Math.max(down, right), up/*Math.max(up, left)*/);
 		}
 	}	
 	

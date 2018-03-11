@@ -10,7 +10,7 @@ public class CompMaze extends MazeGame {
 
 		PathFinder p = new PathFinder(getM());
 		try {
-			p.optimalPathAll4(0, 0, getM().getRows() - 1, getM().getCols() - 1, this);
+			p.optimalPathFromTop(0, 0, getM().getRows() - 1, getM().getCols() - 1, this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
