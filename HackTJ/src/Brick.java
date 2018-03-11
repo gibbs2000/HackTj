@@ -34,11 +34,17 @@ public class Brick extends JPanel {
 			break;
 		case 0:
 			g2.setColor(Color.WHITE);
-			g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
+			g2.clearRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
+
+			// g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS,
+			// MazeConstants.DEFAULT_DIMENSIONS);
 			break;
 		case 3:
 			g2.setColor(Color.WHITE);
-			g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
+			g2.clearRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
+
+			// g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS,
+			// MazeConstants.DEFAULT_DIMENSIONS);
 			break;
 		case -2:
 			g2.setColor(Color.RED);
