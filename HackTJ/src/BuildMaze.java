@@ -45,7 +45,56 @@ public class BuildMaze extends JPanel implements KeyListener {
 			}
 		}
 	}
+	
+	public BuildMaze(String s) {
+		frame = new JFrame("Maze Solver");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(MazeConstants.WINDOW_WIDTH, MazeConstants.WINDOW_HEIGHT);
+		frame.setVisible(true);
+		frame.setResizable(false);
+		frame.addKeyListener(this);
+		frame.setBackground(Color.RED);
 
+		JOptionPane.showMessageDialog(null, "Welcome to Maze Builder");
+		JOptionPane.showMessageDialog(null, "Use the arrow keys to make a maze ending in the bottom right corner");
+
+		x = 0;
+		y = 0;
+		m = new Maze(s);
+		bricks = setupGrid(frame, m);
+
+		/*for (int i = 0; i < m.getRows(); i++) {
+			for (int j = 0; j < m.getCols(); j++) {
+				bricks[i][j] = new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
+						(j) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS, m.getCell(i, j));
+				frame.add(new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
+						m.getCell(i, j)));
+				frame.revalidate();
+				frame.repaint();
+				System.out.println("Should be a " + m.getCell(i, j));
+
+			}
+		}*/
+		
+	}
+	
+	public static Brick[][] setupGrid(JFrame cr, Maze m) {
+		Brick[][] bricks = new Brick[m.getRows()][m.getCols()];
+
+		for (int i = 0; i < m.getRows(); i++) {
+			for (int j = 0; j < m.getCols(); j++) {
+				bricks[i][j] = new Brick((i) * 10 + 10, (j) * 10 + 10, m.getCell(i, j));
+				cr.add(new Brick((i) * 100, (j) * 100, m.getCell(i, j)));
+				cr.revalidate();
+				cr.repaint();
+				//System.out.println("Should be a " + m.getCell(i, j));
+
+			}
+		}
+		return bricks;
+
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

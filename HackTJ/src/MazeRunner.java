@@ -12,7 +12,7 @@ public class MazeRunner {
 		} else if (((String) choice).equals(choices[1])) {
 
 		} else {
-
+			BuildMaze(/*TODO add param to choose which maze to build*/);
 		}
 
 	}
