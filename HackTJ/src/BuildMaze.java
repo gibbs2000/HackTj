@@ -7,13 +7,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class makeMaze extends JPanel implements KeyListener {
+public class BuildMaze extends JPanel implements KeyListener {
 	JFrame frame;
 	private int x;
 	private int y;
 	private Maze m;
 
-	public makeMaze() {
+	public BuildMaze() {
 		frame = new JFrame("Maze Maker");
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +24,7 @@ public class makeMaze extends JPanel implements KeyListener {
 		x = 0;
 		y = 0;
 		m = new Maze("default.txt");
-		JOptionPane.showMessageDialog(null, "Welcome to Maze Maker");
+		JOptionPane.showMessageDialog(null, "Welcome to Maze Builder");
 		JOptionPane.showMessageDialog(null, "Use the DOWN and RIGHT arrow keys to make a maze");
 
 	}

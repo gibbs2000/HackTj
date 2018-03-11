@@ -8,7 +8,9 @@ public class MazeRunner {
 		Object choice = JOptionPane.showInputDialog(null, "Choose game mode", "Input", JOptionPane.INFORMATION_MESSAGE,
 				null, choices, choices[0]);
 		if (((String) choice).equals(choices[0])) {
-			makeMaze m = new makeMaze();
+			BuildMaze m = new BuildMaze();
+		} else if (((String) choice).equals(choices[1])) {
+
 		} else {
 
 		}
