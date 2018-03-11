@@ -1,7 +1,6 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,11 +12,10 @@ public class BuildMaze extends JPanel implements KeyListener {
 	private int x;
 	private int y;
 	private Maze m;
-	private ArrayList<ArrayList<Cell>> cells;
+	private Brick[][] bricks;
 
 	public BuildMaze() {
 		frame = new JFrame("Maze Builder");
-		cells = new ArrayList<ArrayList<Cell>>();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(MazeConstants.WINDOW_SIZE, MazeConstants.WINDOW_SIZE);
 		frame.setVisible(true);
@@ -26,33 +24,27 @@ public class BuildMaze extends JPanel implements KeyListener {
 		x = 0;
 		y = 0;
 		m = new Maze("default.txt");
-		for (int i = 0; i < m.getRows(); i++) {
-			ArrayList<Cell> col = new ArrayList<Cell>();
-			for (int j = 0; j < m.getCols(); j++) {
-				col.add(new Cell(i, j, m.getCell(i, j)));
-			}
-			cells.add(col);
+		bricks = new Brick[m.getRows()][m.getCols()];
 
-		}
 		for (int i = 0; i < m.getRows(); i++) {
 			for (int j = 0; j < m.getCols(); j++) {
-				frame.add(cells.get(i).get(j));
-			}
+				bricks[i][j] = new Brick((i) * 10 + 10, (j) * 10 + 10, m.getCell(i, j));
+				frame.add(new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
+						m.getCell(i, j)));
+				frame.revalidate();
+				frame.repaint();
+				System.out.println("Should be a " + m.getCell(i, j));
 
+			}
 		}
-		frame.revalidate();
-		frame.repaint();
 		JOptionPane.showMessageDialog(null, "Welcome to Maze Builder");
-		JOptionPane.showMessageDialog(null, "Use the DOWN and RIGHT arrow keys to make a maze");
+		JOptionPane.showMessageDialog(null, "Use the arrow keys to make a maze");
 
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (x > 0 && y > 0) {
-			m.setCell(x, y, 0);
-		}
 
 	}
 
@@ -63,23 +55,39 @@ public class BuildMaze extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getID() == (KeyEvent.VK_RIGHT)) {
-			if (y < MazeConstants.WINDOW_SIZE)
-				x++;
-		}
-		if (e.getID() == (KeyEvent.VK_LEFT)) {
+		int key = e.getKeyCode();
+
+		if (key == KeyEvent.VK_LEFT) {
+			System.out.println("left");
+
 			if (x > 0)
 				x--;
 		}
-		if (e.getID() == (KeyEvent.VK_DOWN)) {
-			if (y < MazeConstants.WINDOW_SIZE)
-				y++;
+
+		if (key == KeyEvent.VK_RIGHT) {
+			System.out.println("right");
+			if (x < m.getRows())
+				x++;
 		}
-		if (e.getID() == (KeyEvent.VK_UP)) {
+
+		if (key == KeyEvent.VK_UP) {
+			System.out.println("up");
+
 			if (y > 0)
 				y--;
 		}
 
+		if (key == KeyEvent.VK_DOWN) {
+			System.out.println("down");
+
+			if (y < m.getCols())
+				y++;
+		}
+
+		if (x > 0 && y > 0) {
+			m.setCell(x, y, 0);
+			bricks[x][y] = new Brick((x) * 10 + 10, (y) * 10 + 10, m.getCell(x, y));
+		}
 	}
 
 	@Override
