@@ -21,45 +21,40 @@ public class Brick extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
-		
+
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(5));
 		g2.setColor(Color.BLACK);
 		g2.drawRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
-		//g2.clearRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
+		// g2.clearRect(x, y, MazeConstants.DEFAULT_DIMENSIONS,
+		// MazeConstants.DEFAULT_DIMENSIONS);
 		switch (blockType) {
 		case 1:
 			g2.setColor(Color.RED);
+
 			g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
 			break;
 		case 0:
 			g2.setColor(Color.WHITE);
-<<<<<<< HEAD
-			g2.clearRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
-
 			// g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS,
 			// MazeConstants.DEFAULT_DIMENSIONS);
-=======
-			//g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
->>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
+			// g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS,
+			// MazeConstants.DEFAULT_DIMENSIONS);
+
 			break;
 		case 3:
 			g2.setColor(Color.WHITE);
-<<<<<<< HEAD
-			g2.clearRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
 
 			// g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS,
 			// MazeConstants.DEFAULT_DIMENSIONS);
-=======
-			//g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
->>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
+
 			break;
 		case -2:
 			g2.setColor(Color.RED);
 			g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
 			break;
 		default:
-			g2.setColor(Color.BLACK);
+			g2.setColor(Color.GRAY);
 			g2.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
 		}
 
