@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
@@ -14,5 +16,8 @@ public class CompMaze extends MazeGame {
 			// e.printStackTrace();
 		}
 	}
-
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+	}
 }

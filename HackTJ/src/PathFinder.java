@@ -85,7 +85,7 @@ public class PathFinder {
 		System.out.println("Repainting " + r + " " + c);
 		m.getFrame().revalidate();
 		m.getFrame().repaint();
-		Thread.sleep(100);
+		Thread.sleep(500);
 		m.getFrame().remove(m.getBricks()[r][c]);
 		m.getBricks()[r][c] = new Brick(r * MazeConstants.DEFAULT_DIMENSIONS, c * MazeConstants.DEFAULT_DIMENSIONS, 3);
 		m.getFrame().add(m.getBricks()[r][c]);

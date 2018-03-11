@@ -19,7 +19,7 @@ public class MazeGame extends JPanel {
 		getFrame().setSize(MazeConstants.WINDOW_WIDTH, MazeConstants.WINDOW_HEIGHT);
 		getFrame().setVisible(true);
 		getFrame().setResizable(false);
-		getFrame().setBackground(Color.WHITE);
+		getFrame().setBackground(Color.CYAN);
 
 		JOptionPane.showMessageDialog(null, "Welcome to " + gt);
 
