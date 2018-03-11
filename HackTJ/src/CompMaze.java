@@ -1,7 +1,7 @@
 import javax.swing.JOptionPane;
 
 public class CompMaze extends MazeGame {
-	public CompMaze(String choice) {
+	public CompMaze(String choice) throws InterruptedException {
 		super("Maze Auto-Solver", choice);
 		JOptionPane.showMessageDialog(null, "Watch the computer beat the maze as fast as possible");
 

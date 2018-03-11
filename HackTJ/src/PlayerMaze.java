@@ -1,10 +1,13 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class PlayerMaze extends MazeGame {
+public class PlayerMaze extends MazeGame implements KeyListener {
 
 	public PlayerMaze(String choice) {
 		super("Player Maze", choice);
+		getFrame().addKeyListener(this);
+
 	}
 
 	@Override
