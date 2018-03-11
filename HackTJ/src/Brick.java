@@ -27,9 +27,13 @@ public class Brick extends JPanel {
 		g2.drawRect(x, y, 100, 100);
 		g2.setColor(Color.WHITE);
 		switch(blockType){
-		case 1: case 0:
+		case 1: 
+			g2.setColor(Color.RED);
+			g2.fillRect(x, y, 100, 100);
+			break;
+		case 0:
 			g2.setColor(Color.WHITE);
-			//g2.fillRect(x, y, 100, 100);
+			g2.fillRect(x, y, 100, 100);
 			break;
 		case 3:
 			g2.setColor(Color.WHITE);
@@ -44,6 +48,12 @@ public class Brick extends JPanel {
 			g2.fillRect(x, y, 100, 100);
 		}
 		
+	}
+	public int getBlockType(){
+		return blockType;
+	}
+	public void setBlockType(int blockType){
+		this.blockType = blockType;
 	}
 
 }
