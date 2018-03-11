@@ -70,11 +70,13 @@ public class Blackjack extends JPanel {
 
 	public void hit(Deck h) {
 		ourDeck.draw(1, h);
+		playerHand = !playerHand;
 		if (hand.valueOfHand() > 21)
 			this.bust();
 
 		if (hand.valueOfHand() == 21)
 			this.win();
+		
 	}
 
 	public void bust() {
@@ -97,6 +99,7 @@ public class Blackjack extends JPanel {
 		ourDeck.draw(2, hand);
 		ourDeck.draw(2, compHand);
 	}
+	
 
 	public static void main(String[] args) {
 		Blackjack game = new Blackjack();
