@@ -2,27 +2,24 @@ import javax.swing.JOptionPane;
 
 public class MazeRunner {
 	public static void main(String[] args) throws InterruptedException {
-		String[] choices = { "Build", "Solve", "Watch" };
+		String[] modes = { "Build", "Solve", "Watch" };
 		String[] mazes = { "m1.txt", "m2.txt", "m3.txt" };
 		JOptionPane.showMessageDialog(null,
 				"Welcome to Maze Runner\nBuild your own maze for the computer to solve, solve one of our prebuilt mazes, or watch the computer solve it live");
-		Object choice = JOptionPane.showInputDialog(null, "Choose game mode", "Input", JOptionPane.INFORMATION_MESSAGE,
-				null, choices, choices[0]);
-		if (((String) choice).equals(choices[0])) {
+		Object mode = JOptionPane.showInputDialog(null, "Choose game mode", "Input", JOptionPane.INFORMATION_MESSAGE,
+				null, modes, modes[0]);
+		if (((String) mode).equals(modes[0])) {
 			BuildMaze m = new BuildMaze();
-		} else if (((String) choice).equals(choices[1])) {
-			Object maze = JOptionPane.showInputDialog(null, "Which maze do you want to solve?", "Player Solver",
+		} else if (((String) mode).equals(modes[1])) {
+			Object choice = JOptionPane.showInputDialog(null, "Which maze do you want to solve?", "Player Solver",
 					JOptionPane.INFORMATION_MESSAGE, null, mazes, mazes[0]);
+			PlayerMaze m = new PlayerMaze((String) choice);
 		} else {
-<<<<<<< HEAD
 
-			Object maze = JOptionPane.showInputDialog(null, "Which maze do you want to watch the computer solve?",
+			Object choice = JOptionPane.showInputDialog(null, "Which maze do you want to watch the computer solve?",
 					"Maze Auto-Solver", JOptionPane.INFORMATION_MESSAGE, null, mazes, mazes[0]);
-			BuildMaze m = new BuildMaze((String) maze);
-=======
-			String fName = JOptionPane.showInputDialog("What is the name of the Maze File?");
-			BuildMaze m = new BuildMaze(fName);
->>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
+			CompMaze m = new CompMaze((String) choice);
+
 		}
 
 	}

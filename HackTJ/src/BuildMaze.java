@@ -1,167 +1,33 @@
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
-public class BuildMaze extends JPanel implements KeyListener {
-	static JFrame frame;
-	private int x;
-	private int y;
-	private static Maze m;
-	private static Brick[][] bricks;
+public class BuildMaze extends MazeGame implements KeyListener {
 
 	public BuildMaze() {
-		frame = new JFrame("Maze Builder");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(MazeConstants.WINDOW_WIDTH, MazeConstants.WINDOW_HEIGHT);
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.addKeyListener(this);
-		frame.setBackground(Color.RED);
-
-		JOptionPane.showMessageDialog(null, "Welcome to Maze Builder");
+		super("Maze Builer", "default.txt");
 		JOptionPane.showMessageDialog(null, "Use the arrow keys to make a maze ending in the bottom right corner");
-
-		x = 0;
-		y = 0;
-		m = new Maze("default.txt");
-		bricks = new Brick[m.getRows()][m.getCols()];
-
-		for (int i = 0; i < m.getRows(); i++) {
-			for (int j = 0; j < m.getCols(); j++) {
-				bricks[i][j] = new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
-						(j) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS, m.getCell(i, j));
-				frame.add(new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
-						m.getCell(i, j)));
-				frame.revalidate();
-				frame.repaint();
-				System.out.println("Should be a " + m.getCell(i, j));
-
-			}
-		}
-	}
-<<<<<<< HEAD
-
-	public BuildMaze(String s) {
-=======
-	
-	public BuildMaze(String s) throws InterruptedException {
->>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
-		frame = new JFrame("Maze Solver");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(MazeConstants.WINDOW_WIDTH, MazeConstants.WINDOW_HEIGHT);
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.addKeyListener(this);
-		frame.setBackground(Color.WHITE);
-
-		JOptionPane.showMessageDialog(null, "Welcome to Maze Auto-Solver");
-		JOptionPane.showMessageDialog(null, "Watch the computer beat the maze as fast as possible");
-
-		x = 0;
-		y = 0;
-		m = new Maze(s);
-		bricks = setupGrid(frame, m);
-<<<<<<< HEAD
-
-		/*
-		 * for (int i = 0; i < m.getRows(); i++) { for (int j = 0; j < m.getCols(); j++)
-		 * { bricks[i][j] = new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS +
-		 * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS +
-		 * MazeConstants.DEFAULT_DIMENSIONS, m.getCell(i, j)); frame.add(new Brick((i) *
-		 * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
-		 * m.getCell(i, j))); frame.revalidate(); frame.repaint();
-		 * System.out.println("Should be a " + m.getCell(i, j));
-		 * 
-		 * } }
-		 */
-
-=======
-		
-		PathFinder p = new PathFinder(m);
-		p.optimalPathFromTop(0, 0, m.getRows()-1, m.getCols()-1);
-		
->>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
-	}
-
-	public static Brick[][] setupGrid(JFrame cr, Maze m) {
-		Brick[][] bricks = new Brick[m.getRows()][m.getCols()];
-
-		for (int i = 0; i < m.getRows(); i++) {
-			for (int j = 0; j < m.getCols(); j++) {
-				bricks[i][j] = new Brick((i) * 10 + 10, (j) * 10 + 10, m.getCell(i, j));
-				cr.add(new Brick((i) * 100, (j) * 100, m.getCell(i, j)));
-				cr.revalidate();
-				cr.repaint();
-				// System.out.println("Should be a " + m.getCell(i, j));
-
-			}
-		}
-		return bricks;
-
-	}
-<<<<<<< HEAD
-
-=======
-	
-	public static void updateLocation(int r, int c) throws InterruptedException{
-		//System.out.println(curRow + " " + curCol);
-		
-		bricks[r][c] = new Brick(r * 100, c * 100, -2);
-		
-		frame.add(bricks[r][c]);
-		System.out.println("Repainting " + r + " " + c);
-		frame.revalidate();
-		frame.repaint();
-		Thread.sleep(250);
-		frame.remove(bricks[r][c]);
-		bricks[r][c] = new Brick(r *100, c*100, 3);
-		frame.add(bricks[r][c]);
-		frame.revalidate();
-		frame.repaint();
-	}
-	
->>>>>>> branch 'master' of https://github.com/gibbs2000/HackTj.git
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		if (x > 0 && y > 0) {
-			m.setCell(x, y, 0);
-			bricks[x][y] = new Brick((x) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
-					(y) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS, 0);
-			frame.add(bricks[x][y]);
-			frame.revalidate();
-			frame.repaint();
-
-		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
+		getFrame().addKeyListener(this);
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (x == m.getRows() - 2 && y == m.getCols() - 2) {
+		if (getX() == getM().getRows() - 2 && getY() == getM().getCols() - 2) {
 			System.out.println("Hewwo");
-			frame.setVisible(false);
-			frame.revalidate();
-			frame.repaint();
-			frame.dispose();
+			getFrame().setVisible(false);
+			getFrame().revalidate();
+			getFrame().repaint();
+			getFrame().dispose();
 		}
 		int key = e.getKeyCode();
 		switch (key) {
 		case KeyEvent.VK_LEFT:
 			System.out.println("left");
-			System.out.println(x);
+			System.out.println(getX());
 
-			if (x > 0 && m.getCell(x - 1, y) < 0)
+			if (getX() > 0 && getM().getCell(getX() - 1, getY()) < 0)
 				x--;
 			System.out.println(x);
 			break;
@@ -169,14 +35,14 @@ public class BuildMaze extends JPanel implements KeyListener {
 			System.out.println("right");
 			System.out.println(x);
 
-			if (x < m.getRows() - 1 && m.getCell(x + 1, y) < 0)
+			if (x < getM().getRows() - 1 && getM().getCell(x + 1, y) < 0)
 				x++;
 			System.out.println(x);
 			break;
 		case KeyEvent.VK_UP:
 			System.out.println("up");
 			System.out.println(y);
-			if (y > 0 && m.getCell(x, y - 1) < 0)
+			if (y > 0 && getM().getCell(x, y - 1) < 0)
 				y--;
 			System.out.println(y);
 			break;
@@ -184,7 +50,7 @@ public class BuildMaze extends JPanel implements KeyListener {
 			System.out.println("down");
 			System.out.println(y);
 
-			if (y < m.getCols() - 1 && m.getCell(x, y + 1) < 0)
+			if (y < getM().getCols() - 1 && getM().getCell(x, y + 1) < 0)
 				y++;
 			System.out.println(y);
 			break;
@@ -194,15 +60,15 @@ public class BuildMaze extends JPanel implements KeyListener {
 			break;
 		}
 
-		m.setCell(x, y, 0);
+		getM().setCell(x, y, 0);
 		bricks[x][y] = new Brick((x) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
-				(y) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS, m.getCell(x, y));
-		frame.add(bricks[x][y]);
-		frame.revalidate();
-		frame.repaint();
+				(y) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS, getM().getCell(x, y));
+		getFrame().add(bricks[x][y]);
+		getFrame().revalidate();
+		getFrame().repaint();
 
-		if (m.getCell(x, y - 1) >= 0 && m.getCell(x, y + 1) >= 0 && m.getCell(x + 1, y) >= 0
-				&& m.getCell(x - 1, y) >= 0)
+		if (getM().getCell(x, y - 1) >= 0 && getM().getCell(x, y + 1) >= 0 && getM().getCell(x + 1, y) >= 0
+				&& getM().getCell(x - 1, y) >= 0)
 
 		{
 			JOptionPane.showMessageDialog(null, "You've backed yourself into a corner. Press R to reset", "Uh-oh", 2);
@@ -211,23 +77,24 @@ public class BuildMaze extends JPanel implements KeyListener {
 	}
 
 	private void resetBricks() {
-		frame.removeAll();
-		frame.revalidate();
-		frame.repaint();
+		getFrame().removeAll();
+		getFrame().revalidate();
+		getFrame().repaint();
 
 		x = 0;
 		y = 0;
-		m = new Maze("default.txt");
-		bricks = new Brick[m.getRows()][m.getCols()];
+		setM(new Maze("default.txt"));
+		bricks = new Brick[getM().getRows()][getM().getCols()];
 
-		for (int i = 0; i < m.getRows(); i++) {
-			for (int j = 0; j < m.getCols(); j++) {
+		for (int i = 0; i < getM().getRows(); i++) {
+			for (int j = 0; j < getM().getCols(); j++) {
 				bricks[i][j] = new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
-						(j) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS, m.getCell(i, j));
-				frame.add(new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
-						m.getCell(i, j)));
-				frame.revalidate();
-				frame.repaint();
+						(j) * MazeConstants.DEFAULT_DIMENSIONS + MazeConstants.DEFAULT_DIMENSIONS,
+						getM().getCell(i, j));
+				getFrame().add(new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
+						getM().getCell(i, j)));
+				getFrame().revalidate();
+				getFrame().repaint();
 			}
 		}
 	}
