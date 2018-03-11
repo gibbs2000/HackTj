@@ -1,4 +1,3 @@
-import maps.Grid;
 
 import javax.swing.*;
 import java.awt.*;
