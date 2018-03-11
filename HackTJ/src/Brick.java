@@ -18,6 +18,10 @@ public class Brick extends JPanel{
 		repaint();
 	}
 	
+	public int getValue(){
+		return blockType;
+	}
+	
 	public void paint(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(5));
@@ -25,12 +29,17 @@ public class Brick extends JPanel{
 		g2.drawRect(x, y, 100, 100);
 		switch(blockType){
 		case 1: case 0:
-			g2.setColor(Color.GREEN);
+			//g2.setColor(Color.WHITE);
+			break;
+		case -2:
+			g2.setColor(Color.RED);
+			g2.fillRect(x, y, 100, 100);
 			break;
 		default:
-			g2.setColor(Color.RED);
+			g2.setColor(Color.BLACK);
+			g2.fillRect(x, y, 100, 100);
 		}
-		g2.fillRect(x, y, 100, 100);
+		
 	}
 	/*
 	public void paintComponent(Graphics g){

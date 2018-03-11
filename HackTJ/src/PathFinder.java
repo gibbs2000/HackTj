@@ -1,3 +1,4 @@
+import javax.swing.JFrame;
 
 public class PathFinder {
 	private int[][] grid;
@@ -89,5 +90,30 @@ public class PathFinder {
 			return grid[r][c] + Math.max(down, right);
 		}
 	}
-
+	
+	public int optimalPathFromTop(int r, int c, int goalR, int goalC, JFrame cr, Brick[][] b) throws InterruptedException {
+		System.out.println(curRow + " " + curCol);
+		
+		b[r][c] = new Brick(r * 100, c * 100, -2);
+		cr.add(b[r][c]);
+		System.out.println("Repainting " + r + " " + c);
+		cr.revalidate();
+		cr.repaint();
+		Thread.sleep(250);
+		
+		int down = -1;
+		int right = -1;
+		setCurrent(r, c);
+		if (lookDown(r, c) == -1 && lookRight(r, c) == -1 && r == goalR && c == goalC) {
+			return grid[r][c];
+		} else {
+			if (lookDown(r, c) != -1)
+				down = optimalPathFromTop(r + 1, c, goalR, goalC, cr,b);
+			if (lookRight(r, c) != -1)
+				right = optimalPathFromTop(r, c + 1, goalR, goalC,cr,b);
+			
+			return grid[r][c] + Math.max(down, right);
+		}
+	}
+	
 }
