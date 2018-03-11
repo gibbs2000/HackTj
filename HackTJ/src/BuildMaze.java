@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class BuildMaze extends MazeGame implements KeyListener {
 
 	public BuildMaze() {
-		super("Maze Builer", "default.txt");
+		super("Maze Builder", "default.txt");
 		JOptionPane.showMessageDialog(null, "Use the arrow keys to make a maze ending in the bottom right corner");
 		getFrame().addKeyListener(this);
 
@@ -22,6 +22,15 @@ public class BuildMaze extends MazeGame implements KeyListener {
 			getFrame().revalidate();
 			getFrame().repaint();
 			getFrame().dispose();
+		}
+		if (getX() > 0 || getY() > 0) {
+			getFrame().remove(super.getBrick(getX(), getY()));
+			getM().setCell(getX(), getY(), 0);
+			getBrick(getX(), getY()).setBlockType(0);
+			getFrame().add(getBrick(getX(), getY()));
+			getFrame().revalidate();
+			getFrame().repaint();
+
 		}
 	}
 

@@ -74,12 +74,12 @@ public class PathFinder {
 	}
 
 	public int optimalPathFromTop(int r, int c, int goalR, int goalC, CompMaze m) throws Exception {
-		//System.out.println(curRow + " " + curCol);
-		/*m.updateLocation(r, c);
-		m.revalidate();
-		m.repaint();*/
-		
-		m.getBricks()[r][c] = new Brick(r * 100, c * 100, -2);
+		// System.out.println(curRow + " " + curCol);
+		/*
+		 * m.updateLocation(r, c); m.revalidate(); m.repaint();
+		 */
+
+		m.getBricks()[r][c] = new Brick(r * MazeConstants.DEFAULT_DIMENSIONS, c * MazeConstants.DEFAULT_DIMENSIONS, -2);
 
 		m.getFrame().add(m.getBricks()[r][c]);
 		System.out.println("Repainting " + r + " " + c);
@@ -87,23 +87,22 @@ public class PathFinder {
 		m.getFrame().repaint();
 		Thread.sleep(100);
 		m.getFrame().remove(m.getBricks()[r][c]);
-		m.getBricks()[r][c] = new Brick(r * 100, c * 100, 3);
+		m.getBricks()[r][c] = new Brick(r * MazeConstants.DEFAULT_DIMENSIONS, c * MazeConstants.DEFAULT_DIMENSIONS, 3);
 		m.getFrame().add(m.getBricks()[r][c]);
 		m.getFrame().revalidate();
 		m.getFrame().repaint();
-		
-		
+
 		int down = -1;
 		int right = -1;
 		setCurrent(r, c);
 		if (lookDown(r, c) == -1 && lookRight(r, c) == -1 && r == goalR && c == goalC) {
 			throw new Exception();
-			//return grid[r][c];
+			// return grid[r][c];
 		} else {
 			if (lookDown(r, c) != -1)
-				down = optimalPathFromTop(r + 1, c, goalR, goalC,m);
+				down = optimalPathFromTop(r + 1, c, goalR, goalC, m);
 			if (lookRight(r, c) != -1)
-				right = optimalPathFromTop(r, c + 1, goalR, goalC,m);
+				right = optimalPathFromTop(r, c + 1, goalR, goalC, m);
 
 			return grid[r][c] + Math.max(down, right);
 		}

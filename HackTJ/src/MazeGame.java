@@ -43,24 +43,6 @@ public class MazeGame extends JPanel {
 		}
 	}
 
-	public Brick[][] setupGrid(JFrame cr, Maze m) {
-		Brick[][] bricks = new Brick[m.getRows()][m.getCols()];
-
-		for (int i = 0; i < m.getRows(); i++) {
-			for (int j = 0; j < m.getCols(); j++) {
-				bricks[i][j] = new Brick((i) * 10 + 10, (j) * 10 + 10, m.getCell(i, j));
-				cr.add(new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
-						m.getCell(i, j)));
-				cr.revalidate();
-				cr.repaint();
-				// System.out.println("Should be a " + m.getCell(i, j));
-
-			}
-		}
-		return bricks;
-
-	}
-
 	public void updateLocation(int r, int c) throws InterruptedException {
 		// System.out.println(curRow + " " + curCol);
 
@@ -82,15 +64,7 @@ public class MazeGame extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (x > 0 || y > 0) {
-			getFrame().remove(bricks[x][y]);
-			getM().setCell(x, y, 0);
-			bricks[x][y].setBlockType(0);
-			getFrame().add(bricks[x][y]);
-			getFrame().revalidate();
-			getFrame().repaint();
 
-		}
 	}
 
 	public Maze getM() {
