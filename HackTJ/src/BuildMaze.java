@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -12,10 +13,11 @@ public class BuildMaze extends JPanel implements KeyListener {
 	private int x;
 	private int y;
 	private Maze m;
+	private ArrayList<ArrayList<Cell>> cells;
 
 	public BuildMaze() {
 		frame = new JFrame("Maze Builder");
-
+		cells = new ArrayList<ArrayList<Cell>>();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(MazeConstants.WINDOW_SIZE, MazeConstants.WINDOW_SIZE);
 		frame.setVisible(true);
@@ -24,6 +26,22 @@ public class BuildMaze extends JPanel implements KeyListener {
 		x = 0;
 		y = 0;
 		m = new Maze("default.txt");
+		for (int i = 0; i < m.getRows(); i++) {
+			ArrayList<Cell> col = new ArrayList<Cell>();
+			for (int j = 0; j < m.getCols(); j++) {
+				col.add(new Cell(i, j, m.getCell(i, j)));
+			}
+			cells.add(col);
+
+		}
+		for (int i = 0; i < m.getRows(); i++) {
+			for (int j = 0; j < m.getCols(); j++) {
+				frame.add(cells.get(i).get(j));
+			}
+
+		}
+		frame.revalidate();
+		frame.repaint();
 		JOptionPane.showMessageDialog(null, "Welcome to Maze Builder");
 		JOptionPane.showMessageDialog(null, "Use the DOWN and RIGHT arrow keys to make a maze");
 

@@ -1,5 +1,7 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
@@ -20,6 +22,11 @@ public class Cell extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
+		Graphics2D g1 = (Graphics2D) g;
+		g1.setStroke(new BasicStroke(5));
+		g1.setColor(Color.CYAN);
+		g1.drawRect(x * MazeConstants.DEFAULT_DIMENSIONS, y * MazeConstants.DEFAULT_DIMENSIONS,
+				MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
 		switch (type) {
 		case -1:
 			g.setColor(Color.BLACK);
@@ -29,6 +36,7 @@ public class Cell extends JPanel {
 			break;
 
 		}
-		g.fillRect(x, y, MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
+		g.fillRect(x * MazeConstants.DEFAULT_DIMENSIONS, y * MazeConstants.DEFAULT_DIMENSIONS,
+				MazeConstants.DEFAULT_DIMENSIONS, MazeConstants.DEFAULT_DIMENSIONS);
 	}
 }
