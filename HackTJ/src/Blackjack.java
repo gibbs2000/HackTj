@@ -1,9 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -38,23 +37,32 @@ public class Blackjack extends JPanel{
 		startButton.setActionCommand("Start");
 		hitButton.setActionCommand("Hit");
 		stayButton.setActionCommand("Stay");
+		
+		stayButton.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			  stay();
+		  }
+		});
+		
+		startButton.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+		    start();
+		  }
+		});
+		
+		hitButton.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			  hit();
+		  }
+		});
+		
 		}
-	
-    public void actionPerformed(ActionEvent ae) {
-
-        String action = ae.getActionCommand();
-
-        if (action.equals("Start")) {
-        	this.start();
-        }
-        else if (action.equals("Hit")) {
-        	this.hit();
-        }
-        else if (action.equals("Stay")) {
-        	this.stay();
-        }
-
-    }
 
 	
 	private void setDefaultCloseOperation(int exitOnClose) {
