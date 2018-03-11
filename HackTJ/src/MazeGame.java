@@ -49,7 +49,8 @@ public class MazeGame extends JPanel {
 		for (int i = 0; i < m.getRows(); i++) {
 			for (int j = 0; j < m.getCols(); j++) {
 				bricks[i][j] = new Brick((i) * 10 + 10, (j) * 10 + 10, m.getCell(i, j));
-				cr.add(new Brick((i) * 100, (j) * 100, m.getCell(i, j)));
+				cr.add(new Brick((i) * MazeConstants.DEFAULT_DIMENSIONS, (j) * MazeConstants.DEFAULT_DIMENSIONS,
+						m.getCell(i, j)));
 				cr.revalidate();
 				cr.repaint();
 				// System.out.println("Should be a " + m.getCell(i, j));

@@ -67,6 +67,7 @@ public class BuildMaze extends MazeGame implements KeyListener {
 			System.out.println("r");
 			break;
 		}
+		System.out.println(super.getM().getCell(super.getX(), super.getY()));
 
 		getM().setCell(super.getX(), super.getY(), 0);
 		setBrick(super.getX(), super.getY(),
